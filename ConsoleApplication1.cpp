@@ -1,5 +1,5 @@
-﻿
 #include <iostream>
+#include <cmath>
 
 
 double dodawanie(double a, double b) {
@@ -16,7 +16,7 @@ double mnozenie(double a, double b) {
 
 double dzielenie(double a, double b) {
     if (b == 0) {
-        std::cout << Nie mozna dzielic przez 0!;
+        std::cout << "Nie mozna dzielic przez 0! Zwracam stara liczbe." << std::endl;
         return a;
     }
     return a / b;
@@ -24,62 +24,71 @@ double dzielenie(double a, double b) {
 
 double modulo(double a, double b) {
     if (b == 0) {
-        std::cout << Nie mozna dzielic przez 0!;
+        std::cout << "Nie mozna dzielic przez 0! Zwracam stara liczbe." << std::endl;
         return a;
     }
-    return a%b;
+    return std::fmod(a, b);
 }
 
 void menu() {
-    int wybor;
+    int wybor = 0;
     double a = 0;
     double b;
-    std::cout << "1) +" << std::endl;
-    std::cout << "2) -" << std::endl;
-    std::cout << "3) *" << std::endl;
-    std::cout << "4) /" << std::endl;
-    std::cout << "5) %" << std::endl;
-    std::cout << "6) wyczysc " << std::endl;
-    std::cout << "7) wyjscie " << std::endl;
-    
- 
-    while(wybor!=7){
-       std::cin >> wybor;
-       std::cin >> b;
-    switch (wybor) {
-       
-    case 1:
-        std::cout << dodawanie(a, b);
-        a = dodawanie(a, b);
-        break;
-    case 2:
-        std::cout << odejmowanie(a, b);
-        a = odejmowanie(a, b);
-        break;
-    case 3:
-        std::cout << mnozenie(a, b);
-        a = mnozenie(a, b);
-        break;
-    case 4:
-        std::cout << dzielenie(a, b);
-        a = dzielenie(a, b);
-        break;
-    case 5:
-        std::cout << modulo(a, b);
-        a = modulo(a, b);
-        break;
-    case 6:
-        a = 0;
-        break;
-    case 7:
-        exit;
-        break;
 
+    std::cout << "Kalkulator" << std::endl;
+    std::cout << "1) + (dodawanie)"<< std::endl;
+    std::cout << "2) - (odejmowanie)"<< std::endl;
+    std::cout << "3) * (mnożenie)"<< std::endl;
+    std::cout << "4) / (dzielenie)"<< std::endl;
+    std::cout << "5) % (modulo)"<< std::endl;
+    std::cout << "6) Wyczysc (resetuje a do 0)"<< std::endl;
+    std::cout << "7) Wyjscie"<< std::endl;
+
+    while (wybor != 7) {
+        std::cout << "Wybierz operacje: ";
+        std::cin >> wybor;
+
+        if (wybor >= 1 && wybor <= 5) {
+            std::cout << "Podaj liczbe: ";
+            std::cin >> b;
+        }
+
+        switch (wybor) {
+            case 1:
+                a = dodawanie(a, b);
+                std::cout << "Wynik: " << a << std::endl;
+                break;
+            case 2:
+                a = odejmowanie(a, b);
+                std::cout << "Wynik: " << a << std::endl;
+                break;
+            case 3:
+                a = mnozenie(a, b);
+                std::cout << "Wynik: " << a << std::endl;
+                break;
+            case 4:
+                a = dzielenie(a, b);
+                std::cout << "Wynik: " << a << std::endl;
+                break;
+            case 5:
+                a = modulo(a, b);
+                std::cout << "Wynik: " << a << std::endl;
+                break;
+            case 6:
+                a = 0;
+                std::cout << "Wyczyszczono, a = 0"<< std::endl;
+                break;
+            case 7:
+                std::cout << "Koniec programu"<< std::endl;
+                return;
+            default:
+                std::cout << "Niepoprawny wybor! Sprobuj ponownie." << std::endl;
+                break;
+        }
     }
 }
 
-
-int main()
-{
+int main() {
     menu();
+    return 0;
 }
