@@ -1,5 +1,4 @@
 #include <iostream>
-#include "kalkulator.cpp"
 
 class Kalkulator
 {
